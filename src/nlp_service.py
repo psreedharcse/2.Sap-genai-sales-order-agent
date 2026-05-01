@@ -1,5 +1,12 @@
 import json
 
+def validate_entities(entities):
+    required_fields = ["customer_id", "sales_org"]
+
+    for field in required_fields:
+        if not entities.get(field):
+            raise ValueError(f"Missing required field: {field}")
+
 def extract_entities(query: str) -> dict:
     response = call_llm(query)  # LLM returns JSON
 

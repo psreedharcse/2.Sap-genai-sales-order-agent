@@ -1,21 +1,45 @@
-# SAP GenAI Sales Order Agent
+# FastAPI Orchestration Layer
 
 ## Overview
 
-AI-driven system that converts natural language inputs into SAP S/4HANA sales order operations using LLM and API orchestration.
+FastAPI acts as the central orchestration layer connecting NLP processing, agent decision-making, and SAP API execution.
 
-## Problem
+---
 
-Manual SAP interaction slows down sales order processing.
+## Components
 
-## Solution
+### 1. API Layer
 
-LLM-based system that extracts intent and entities and dynamically executes SAP APIs.
+* Receives user request
+* Exposes REST endpoint
+
+### 2. Agent Layer
+
+* Determines intent
+* Routes request
+
+### 3. NLP Layer
+
+* Extracts intent and entities
+
+### 4. Mapping Layer
+
+* Converts entities into SAP payload
+
+### 5. SAP Layer
+
+* Executes OData API
+
+---
 
 ## Flow
 
-User → LLM → Agent → SAP → Response
+User → FastAPI → Agent → NLP → Mapper → SAP → Response
 
-## Tech Stack
+---
 
-Python, FastAPI, LLM, SAP OData APIs
+## Benefits
+
+* Modular architecture
+* Easy integration with UI and channels
+* Scalable API-based system

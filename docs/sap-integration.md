@@ -1,44 +1,43 @@
-# JSON Mapping Design (NLP → SAP OData)
+# SAP OData Integration with CSRF Handling
 
 ## Overview
 
-This layer transforms extracted entities from natural language into SAP-compliant OData payloads.
+This module integrates with SAP S/4HANA OData services to create and retrieve sales orders.
 
 ---
 
-## Input
+## CSRF Token Flow
 
-Structured JSON from NLP layer containing business entities.
+1. Send GET request with header:
+   x-csrf-token: Fetch
+
+2. Receive token from response header
+
+3. Use token in POST request
 
 ---
 
-## Output
+## API Operations
 
-SAP OData payload required for creating or retrieving sales orders.
+### Create Sales Order (POST)
 
----
+* Uses CSRF token
+* Sends JSON payload
 
-## Mapping Logic
+### Get Sales Order Status (GET)
 
-| NLP Field            | SAP Field            |
-| -------------------- | -------------------- |
-| customer_id          | SoldToParty          |
-| sales_org            | SalesOrganization    |
-| distribution_channel | DistributionChannel  |
-| division             | OrganizationDivision |
-| order_type           | SalesOrderType       |
-| payment_terms        | PaymentTerms         |
+* Retrieves order details
 
 ---
 
 ## Flow
 
-Entities JSON → Mapping → SAP Payload → API Execution
+FastAPI → Agent → SAP Service → OData API → Response
 
 ---
 
 ## Benefits
 
-* Ensures SAP-compliant requests
-* Decouples NLP from SAP logic
-* Enables dynamic API execution
+* Secure SAP interaction
+* Prevents unauthorized changes
+* Ensures compliance with SAP Gateway

@@ -1,0 +1,29 @@
+Extract the following fields from the user query:
+
+* customer_id
+* amount
+* sales_org
+* distribution_channel
+* division
+* order_type
+* payment_terms
+* order_id
+
+Return ONLY valid JSON.
+
+Example:
+
+Input:
+"I want to create a sales order for customer 25100273 with amount 300 EUR, sales org 2510, channel 10, division 00"
+
+Output:
+{
+"customer_id": "25100273",
+"amount": "300 EUR",
+"sales_org": "2510",
+"distribution_channel": "10",
+"division": "00",
+"order_type": "OR",
+"payment_terms": "0004",
+"order_id": null
+}

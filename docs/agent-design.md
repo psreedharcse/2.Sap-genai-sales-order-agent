@@ -1,50 +1,42 @@
-# Entity Extraction Design
+# Agent-Based Tool Execution
 
 ## Overview
 
-Entity extraction converts natural language input into structured data required for SAP sales order operations.
+The system uses an AI agent to dynamically select and execute tools (APIs) based on user queries.
 
 ---
 
-## Key Entities
+## Tools
 
-* customer_id
-* amount
-* sales_org
-* distribution_channel
-* division
-* order_type
-* payment_terms
-* order_id
+* create_sales_order
+* get_sales_order_status
 
 ---
 
 ## Approach
 
-### 1. LLM-Based Extraction
+### 1. Tool Selection
 
-* Converts user query into structured JSON
-* Uses prompt with predefined schema
+* LLM determines the appropriate tool
 
-### 2. Validation Layer
+### 2. Entity Extraction
 
-* Ensures required fields are present
-* Converts data types (amount, quantity)
+* Extract required parameters
 
-### 3. Mapping Layer
+### 3. Tool Execution
 
-* Maps extracted entities to SAP OData payload
+* Execute selected SAP API
 
 ---
 
 ## Flow
 
-User Query → LLM → JSON Entities → Validation → SAP Payload
+User → LLM → Tool Selection → Entity Extraction → Tool Execution → Response
 
 ---
 
 ## Benefits
 
-* Structured input for SAP APIs
-* Reduces manual data entry
-* Improves automation accuracy
+* Flexible execution
+* Scalable for adding new tools
+* Reduces hardcoded logic

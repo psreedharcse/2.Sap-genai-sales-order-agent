@@ -1,34 +1,50 @@
-# Intent Classification Design
+# Entity Extraction Design
 
 ## Overview
 
-The system classifies user queries into predefined intents to determine the correct business action.
+Entity extraction converts natural language input into structured data required for SAP sales order operations.
 
 ---
 
-## Supported Intents
+## Key Entities
 
-* CreateOrder
-* GetStatus
+* customer_id
+* amount
+* sales_org
+* distribution_channel
+* division
+* order_type
+* payment_terms
+* order_id
 
 ---
 
 ## Approach
 
-### 1. Rule-Based Classification
+### 1. LLM-Based Extraction
 
-* Fast and deterministic
-* Handles common patterns
+* Converts user query into structured JSON
+* Uses prompt with predefined schema
 
-### 2. LLM-Based Classification
+### 2. Validation Layer
 
-* Handles flexible natural language
-* Used when rules do not match
+* Ensures required fields are present
+* Converts data types (amount, quantity)
+
+### 3. Mapping Layer
+
+* Maps extracted entities to SAP OData payload
+
+---
+
+## Flow
+
+User Query → LLM → JSON Entities → Validation → SAP Payload
 
 ---
 
 ## Benefits
 
-* High accuracy
-* Low latency for common queries
-* Reliable fallback mechanism
+* Structured input for SAP APIs
+* Reduces manual data entry
+* Improves automation accuracy

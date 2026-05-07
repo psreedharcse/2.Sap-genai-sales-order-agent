@@ -1,45 +1,49 @@
-# FastAPI Orchestration Layer
+# Error Handling and Retry Strategy
 
 ## Overview
 
-FastAPI acts as the central orchestration layer connecting NLP processing, agent decision-making, and SAP API execution.
+The system includes validation, retry, and fallback mechanisms to ensure reliable SAP API execution.
 
 ---
 
-## Components
+## Validation
 
-### 1. API Layer
+* Mandatory fields validated before execution
+* Prevents invalid SAP requests
 
-* Receives user request
-* Exposes REST endpoint
+---
 
-### 2. Agent Layer
+## Retry Strategy
 
-* Determines intent
-* Routes request
+* Retries transient failures
+* Configurable retry count and delay
 
-### 3. NLP Layer
+---
 
-* Extracts intent and entities
+## CSRF Token Handling
 
-### 4. Mapping Layer
+* Automatically refreshes expired tokens
+* Retries failed POST requests
 
-* Converts entities into SAP payload
+---
 
-### 5. SAP Layer
+## Error Types
 
-* Executes OData API
+* Validation errors
+* SAP API failures
+* Network failures
+* LLM response errors
 
 ---
 
 ## Flow
 
-User → FastAPI → Agent → NLP → Mapper → SAP → Response
+Request → Validation → API Call → Retry/Fallback → Response
 
 ---
 
 ## Benefits
 
-* Modular architecture
-* Easy integration with UI and channels
-* Scalable API-based system
+* Improved reliability
+* Reduced manual intervention
+* Better user experience

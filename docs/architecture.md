@@ -1,64 +1,66 @@
-# Architecture Diagram – Sales Order GenAI System
+# Architecture Overview — SAP GenAI Sales Order Agent
 
-## Overview
+## High-Level Flow
 
-This architecture converts natural language input into SAP S/4HANA sales order operations using LLM, agent-based orchestration, and API execution.
-
----
-
-## Architecture Layers
-
-### 1. User Layer
-
-Users interact via Teams, UI, or API.
+User → FastAPI → Agent → NLP → SAP Integration → Response
 
 ---
 
-### 2. NLP / LLM Layer
+# Components
 
-* Processes user input
-* Extracts intent and entities
-* Uses prompt templates
+## 1. User Layer
 
----
-
-### 3. Agent Layer
-
-* Decides action based on intent
-* Maps user request to SAP operation
+* Teams
+* Web UI
+* API Consumers
 
 ---
 
-### 4. API Layer (FastAPI)
+## 2. FastAPI Orchestration Layer
 
-* Builds request payload
-* Validates data
-* Routes to SAP
-
----
-
-### 5. SAP Integration Layer
-
-* Handles OData API calls
-* Manages CSRF tokens
-* Handles authentication
+* Receives requests
+* Routes execution
+* Manages workflows
 
 ---
 
-### 6. SAP S/4HANA System
+## 3. NLP / LLM Layer
 
-* Executes business operations
-* Returns response
-
----
-
-### 7. Response Layer
-
-* Formats output
-* Sends back to user
+* Intent classification
+* Entity extraction
 
 ---
 
-## Flow Summary
+## 4. Agent Layer
 
-User → LLM → Agent → API → SAP → Response
+* Tool selection
+* Dynamic execution
+
+---
+
+## 5. Mapping Layer
+
+* Converts entities into SAP OData payload
+
+---
+
+## 6. SAP Integration Layer
+
+* OData API execution
+* CSRF token handling
+
+---
+
+## 7. Response Layer
+
+* Formats API response
+* Returns user-friendly output
+
+---
+
+# Key Design Principles
+
+* Modular architecture
+* Loose coupling
+* Dynamic tool execution
+* Scalable API-driven design
